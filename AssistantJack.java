@@ -15,28 +15,15 @@ public class AssistantJack {
     }
 
     /**
-     * The full constructor, specifying which assistant to use (answer set 1,
-     * answer set 2, or random). Depending on assistant, a different correct
-     * Theory object is created.
-     *
-     * @param answerSet
-     *            1 is a fixed answer of 1,1,1 and 2 is a fixed answer of 6,10,6
-     *            any other integer will be randomly assigned
+     * The full constructor, always using a random correct theory.
      */
-    public AssistantJack(int answerSet) {
+    public AssistantJack() { // ! removed parameter to always use random theory
         this();
-
-        if (answerSet == 1) {
-            this.correctTheory = new Theory(1, 1, 1);
-        } else if (answerSet == 2) {
-            this.correctTheory = new Theory(6, 10, 6);
-        } else {
-            Random random = new Random();
-            int weapon = random.nextInt(6) + 1; // ! ensure variability
-            int location = random.nextInt(10) + 1; // ! ensure variability
-            int person = random.nextInt(6) + 1; // ! ensure variability
-            this.correctTheory = new Theory(weapon, location, person);
-        }
+        Random random = new Random();
+        int weapon = random.nextInt(6) + 1; // ! ensure variability
+        int location = random.nextInt(10) + 1; // ! ensure variability
+        int person = random.nextInt(6) + 1; // ! ensure variability
+        this.correctTheory = new Theory(weapon, location, person);
         System.out.println("Correct Theory: Weapon " + correctTheory.getWeapon() + ", Location " + correctTheory.getLocation() + ", Person " + correctTheory.getPerson()); // ! debug statement
     }
 

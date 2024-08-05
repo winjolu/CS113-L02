@@ -10,9 +10,7 @@ public class DetectiveJill {
     private int solutionPerson;
 
     public DetectiveJill() {
-        Random random = new Random();
-        int answerSet = random.nextInt(3); // ! generate a random answer set (0, 1, or 2)
-        this.jack = new AssistantJack(answerSet); // ! initialize AssistantJack with the random answer set
+        this.jack = new AssistantJack(); // ! use default constructor for randomness
     }
 
     public void initializeTheoryGeneration() {
