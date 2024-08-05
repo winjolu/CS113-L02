@@ -42,5 +42,20 @@ public class DetectiveJill {
 
         solution = jack.checkAnswer(weaponList.get(0), locationList.get(0), murderList.get(0));
         System.out.println(solution);
+
+        if (solution == 1) {
+          weaponList.remove(0);
+        } else if (solution == 2) {
+          locationList.remove(0);
+        } else if (solution == 3) {
+          murderList.remove(0);
+        } else if (solution == 0) {
+          break;
+        }
+
+        System.out.println(weaponList);
+        System.out.println(locationList);
+        System.out.println(murderList);
+        }
     }
 }
