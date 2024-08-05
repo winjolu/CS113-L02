@@ -7,18 +7,10 @@ public class AssistantJack {
     private Theory correctTheory;
 
     /**
-     * The default constructor but will not be called from outside.
+     * The default constructor, always using a random correct theory.
      */
-    private AssistantJack() {
+    public AssistantJack() { // ! default constructor with random theory
         this.timesAsked = 0;
-        this.correctTheory = null;
-    }
-
-    /**
-     * The full constructor, always using a random correct theory.
-     */
-    public AssistantJack() { // ! removed parameter to always use random theory
-        this();
         Random random = new Random();
         int weapon = random.nextInt(6) + 1; // ! ensure variability
         int location = random.nextInt(10) + 1; // ! ensure variability
