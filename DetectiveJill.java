@@ -10,7 +10,9 @@ public class DetectiveJill {
     private int solutionPerson;
 
     public DetectiveJill() {
-        this.jack = new AssistantJack(); // ! use default constructor for randomness
+        Random random = new Random();
+        int answerSet = random.nextInt(3) + 1; // ! ensure we get 1, 2, or random (3)
+        this.jack = new AssistantJack(answerSet); // ! use parameterized constructor
     }
 
     public void initializeTheoryGeneration() {
