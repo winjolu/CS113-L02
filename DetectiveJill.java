@@ -1,61 +1,56 @@
-
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class DetectiveJill {
 
-    public static void main() {
+    public static void main(String[] args) {
         // DECLARATION + INITIALIZATION
-        int answerSet, solution, murder, weapon, location;
-        Theory answer;
+        int answerSet, solution = -1, weapon = 1, location = 1, person = 1;
         AssistantJack jack;
         Scanner keyboard = new Scanner(System.in);
-        ArrayList<Integer> weaponList = new ArrayList<>();
-        ArrayList<Integer> locationList = new ArrayList<>();
-        ArrayList<Integer> murderList = new ArrayList<>();
-
-        for (int i = 1; i <=16; i++) {
-          weaponList.add(i);
-        }
-
-        for (int i = 1; i <=10; i++) {
-          locationList.add(i);
-        }    
-
-        for (int i = 1; i <=6; i++) {
-          murderList.add(i);
-        } 
-
-        System.out.println(weaponList);
-        System.out.println(locationList);
-        System.out.println(murderList);
-
 
         // INPUT
-        System.out.print("Which theory would like you like to test? (1, 2, 3[random]): ");
+        System.out.print("Which theory would you like to test? (1, 2, 3[random]): ");
         answerSet = keyboard.nextInt();
-        keyboard.close();
 
-        //PROCESSING
+        // PROCESSING
         jack = new AssistantJack(answerSet);
 
-        solution = jack.checkAnswer(weaponList.get(0), locationList.get(0), murderList.get(0));
-        System.out.println(solution);
+        // Attempt to solve the mystery within a set number of guesses
+        int attempts = 0;
+        while (attempts < 20) {
+            // Check the theory with AssistantJack
+            solution = jack.checkAnswer(weapon, location, person);
 
-        if (solution == 1) {
-          weaponList.remove(0);
-        } else if (solution == 2) {
-          locationList.remove(0);
-        } else if (solution == 3) {
-          murderList.remove(0);
-        } else if (solution == 0) {
-          break;
+            // Print the result
+            if (solution == 0) {
+                System.out.println("Correct theory found: Weapon=" + weapon + ", Location=" + location + ", Person=" + person);
+                break;
+            } else if (solution == 1) {
+                weapon++;
+                if (weapon > 6) {
+                    weapon = 1;
+                }
+            } else if (solution == 2) {
+                location++;
+                if (location > 10) {
+                    location = 1;
+                }
+            } else if (solution == 3) {
+                person++;
+                if (person > 6) {
+                    person = 1;
+                }
+            }
+
+            attempts++;
         }
 
-        System.out.println(weaponList);
-        System.out.println(locationList);
-        System.out.println(murderList);
+        if (solution != 0) {
+            System.out.println("Failed to find the correct theory in 20 attempts.");
         }
+
+        // Close the scanner
+        keyboard.close();
     }
 }
