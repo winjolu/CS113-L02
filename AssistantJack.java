@@ -32,9 +32,9 @@ public class AssistantJack {
             this.correctTheory = new Theory(6, 10, 6);
         } else {
             Random random = new Random();
-            int weapon = random.nextInt(6) + 1;
-            int location = random.nextInt(10) + 1;
-            int person = random.nextInt(6) + 1;
+            int weapon = random.nextInt(6) + 1; // ! ensure variability
+            int location = random.nextInt(10) + 1; // ! ensure variability
+            int person = random.nextInt(6) + 1; // ! ensure variability
             this.correctTheory = new Theory(weapon, location, person);
         }
         System.out.println("Correct Theory: Weapon " + correctTheory.getWeapon() + ", Location " + correctTheory.getLocation() + ", Person " + correctTheory.getPerson()); // ! debug statement
@@ -105,20 +105,3 @@ public class AssistantJack {
      *            a theory of the murder, weapon and location
      *
      * @return 0 if all three are correct, 1 if the weapon is incorrect, 2 if
-     *         the location is incorrect and 3 if the person is incorrect. If
-     *         multiple are incorrect it will randomly select one of the
-     *         incorrect parts and return that.
-     */
-    public int checkAnswer(Theory theory) {
-        return this.checkAnswer(theory.getWeapon(), theory.getLocation(), theory.getPerson());
-    }
-
-    /**
-     * Accessor for times your AssistantJack has been asked to check a theory
-     *
-     * @return number of times AssistantJack has checkAnswer() been called
-     */
-    public int getTimesAsked() {
-        return this.timesAsked;
-    }
-}
