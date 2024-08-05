@@ -11,7 +11,7 @@ public class Main
      * @param args not used for driver
      */
     public static void main(String[] args) {
-      DetectiveJill.main();
+      DetectiveJill.main(args);
 
     }
 }
