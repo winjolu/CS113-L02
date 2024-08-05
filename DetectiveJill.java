@@ -11,8 +11,8 @@ public class DetectiveJill {
 
     public DetectiveJill() {
         Random random = new Random();
-        int answerSet = random.nextInt(3) + 1; // ! ensure we get 1, 2, or random (3)
-        this.jack = new AssistantJack(answerSet); // ! use parameterized constructor
+        int answerSet = random.nextInt(3); // ! generate a random answer set (0, 1, or 2)
+        this.jack = new AssistantJack(answerSet); // ! initialize AssistantJack with the random answer set
     }
 
     public void initializeTheoryGeneration() {
@@ -23,32 +23,23 @@ public class DetectiveJill {
     }
 
     public void generateTheories() {
-        boolean solved = false;
-        while (!solved) {
-            Theory theory = new Theory(solutionWeapon, solutionLocation, solutionPerson); // ! create new theory
-            int result = jack.checkAnswer(theory); // ! check theory with AssistantJack
-            System.out.println("Checking theory: Weapon " + solutionWeapon + ", Location " + solutionLocation + ", Person " + solutionPerson); // ! debug statement
-            System.out.println("Result: " + result); // ! debug statement
-            if (result == 0) {
-                // ! correct theory found
-                solved = true;
-            } else {
-                adjustTheory(result); // ! adjust the theory based on the feedback
+        /* ! iterate through all possible combinations of weapon, location, and person */
+        for (int weapon = 1; weapon <= 6; weapon++) { // ! 6 possible weapons
+            for (int location = 1; location <= 10; location++) { // ! 10 possible locations
+                for (int person = 1; person <= 6; person++) { // ! 6 possible persons
+                    Theory theory = new Theory(weapon, location, person); // ! create new theory
+                    int result = jack.checkAnswer(theory); // ! check theory with AssistantJack
+                    System.out.println("Checking theory: Weapon " + weapon + ", Location " + location + ", Person " + person); // ! debug statement
+                    System.out.println("Result: " + result); // ! debug statement
+                    if (result == 0) {
+                        // ! correct theory found
+                        this.solutionWeapon = weapon;
+                        this.solutionLocation = location;
+                        this.solutionPerson = person;
+                        return; // ! exit method as we found the correct theory
+                    }
+                }
             }
-        }
-    }
-
-    private void adjustTheory(int result) {
-        switch (result) {
-            case 1:
-                solutionWeapon = (solutionWeapon % 6) + 1; // ! adjust weapon
-                break;
-            case 2:
-                solutionLocation = (solutionLocation % 10) + 1; // ! adjust location
-                break;
-            case 3:
-                solutionPerson = (solutionPerson % 6) + 1; // ! adjust person
-                break;
         }
     }
 
