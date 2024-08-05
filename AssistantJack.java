@@ -1,15 +1,3 @@
-
-/**
- * AssistantJack.java : will be asked various theories by Detective Jill,
- * AssistantJack will then refute the answer or will accept the answer. If
- * AssistantJack refutes the answer, you will be notified of 1 part of your
- * theory that is incorrect (there may be more than one).
- *
- * @author Nery Chapeton-Lamas (material from Kevin Lewis)
- * @version 1.0
- *
- */
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -49,6 +37,7 @@ public class AssistantJack {
             int person = random.nextInt(6) + 1;
             this.correctTheory = new Theory(weapon, location, person);
         }
+        System.out.println("Correct Theory: Weapon " + correctTheory.getWeapon() + ", Location " + correctTheory.getLocation() + ", Person " + correctTheory.getPerson()); // ! debug statement
     }
 
     /**
@@ -132,7 +121,4 @@ public class AssistantJack {
     public int getTimesAsked() {
         return this.timesAsked;
     }
-
-
-  
 }
