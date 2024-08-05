@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DetectiveJill {
@@ -25,6 +24,7 @@ public class DetectiveJill {
             // Print the result
             if (solution == 0) {
                 System.out.println("Correct theory found: Weapon=" + weapon + ", Location=" + location + ", Person=" + person);
+                System.out.println("Number of attempts: " + (attempts + 1));
                 break;
             } else if (solution == 1) {
                 weapon++;
@@ -48,6 +48,7 @@ public class DetectiveJill {
 
         if (solution != 0) {
             System.out.println("Failed to find the correct theory in 20 attempts.");
+            System.out.println("Number of attempts: " + attempts);
         }
 
         // Close the scanner
