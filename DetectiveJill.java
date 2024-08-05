@@ -23,23 +23,32 @@ public class DetectiveJill {
     }
 
     public void generateTheories() {
-        /* ! iterate through all possible combinations of weapon, location, and person */
-        for (int weapon = 1; weapon <= 6; weapon++) { // ! 6 possible weapons
-            for (int location = 1; location <= 10; location++) { // ! 10 possible locations
-                for (int person = 1; person <= 6; person++) { // ! 6 possible persons
-                    Theory theory = new Theory(weapon, location, person); // ! create new theory
-                    int result = jack.checkAnswer(theory); // ! check theory with AssistantJack
-                    System.out.println("Checking theory: Weapon " + weapon + ", Location " + location + ", Person " + person); // ! debug statement
-                    System.out.println("Result: " + result); // ! debug statement
-                    if (result == 0) {
-                        // ! correct theory found
-                        this.solutionWeapon = weapon;
-                        this.solutionLocation = location;
-                        this.solutionPerson = person;
-                        return; // ! exit method as we found the correct theory
-                    }
-                }
+        boolean solved = false;
+        while (!solved) {
+            Theory theory = new Theory(solutionWeapon, solutionLocation, solutionPerson); // ! create new theory
+            int result = jack.checkAnswer(theory); // ! check theory with AssistantJack
+            System.out.println("Checking theory: Weapon " + solutionWeapon + ", Location " + solutionLocation + ", Person " + solutionPerson); // ! debug statement
+            System.out.println("Result: " + result); // ! debug statement
+            if (result == 0) {
+                // ! correct theory found
+                solved = true;
+            } else {
+                adjustTheory(result); // ! adjust the theory based on the feedback
             }
+        }
+    }
+
+    private void adjustTheory(int result) {
+        switch (result) {
+            case 1:
+                solutionWeapon = (solutionWeapon % 6) + 1; // ! adjust weapon
+                break;
+            case 2:
+                solutionLocation = (solutionLocation % 10) + 1; // ! adjust location
+                break;
+            case 3:
+                solutionPerson = (solutionPerson % 6) + 1; // ! adjust person
+                break;
         }
     }
 
