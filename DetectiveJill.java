@@ -39,5 +39,8 @@ public class DetectiveJill {
 
         //PROCESSING
         jack = new AssistantJack(answerSet);
+
+        solution = jack.checkAnswer(weaponList.get(0), locationList.get(0), murderList.get(0));
+        System.out.println(solution);
     }
 }
