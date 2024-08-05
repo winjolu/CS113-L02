@@ -27,6 +27,8 @@ public class DetectiveJill {
                 for (int person = 1; person <= 6; person++) { // ! 6 possible persons
                     Theory theory = new Theory(weapon, location, person); // ! create new theory
                     int result = jack.checkAnswer(theory); // ! check theory with AssistantJack
+                    System.out.println("Checking theory: Weapon " + weapon + ", Location " + location + ", Person " + person); // ! debug statement
+                    System.out.println("Result: " + result); // ! debug statement
                     if (result == 0) {
                         // ! correct theory found
                         this.solutionWeapon = weapon;
